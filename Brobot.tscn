@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqnhaese8be18"]
+
+[ext_resource type="Script" path="res://Brobot.gd" id="1_htirh"]
+[ext_resource type="Texture2D" uid="uid://dg41pqr5hslca" path="res://Robots/robot_3Dgreen.png" id="1_t0kji"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c0lro"]
+radius = 28.0179
+
+[node name="Brobot" type="CharacterBody2D"]
+script = ExtResource("1_htirh")
+
+[node name="Robot3Dgreen" type="Sprite2D" parent="."]
+scale = Vector2(0.363176, 0.363176)
+texture = ExtResource("1_t0kji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_c0lro")
+
+[node name="Projectiles" type="Node" parent="."]
+
+[node name="BulletCooldown" type="Timer" parent="."]
+one_shot = true
