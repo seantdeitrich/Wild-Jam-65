@@ -5,12 +5,13 @@ const SPEED = 200.0
 @onready var bullet_cooldown:=$BulletCooldown
 @onready var projectiles:=$Projectiles
 
+
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("Left", "Right", "Up", "Down")
 	velocity = direction * SPEED;
 	look_at(get_global_mouse_position())
 	move_and_slide()
-
+	
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Shoot") and bullet_cooldown.is_stopped():
 		var new_bullet = bullet.instantiate()
@@ -22,3 +23,6 @@ func _input(event: InputEvent) -> void:
 		pass
 	if Input.is_action_just_pressed("Dash"):
 		pass
+
+func _on_bullet_cooldown_timeout() -> void:
+	pass # Replace with function body.

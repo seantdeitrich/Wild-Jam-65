@@ -16,7 +16,15 @@ texture = ExtResource("1_t0kji")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_c0lro")
 
+[node name="Laser" type="Line2D" parent="."]
+rotation = -1.5708
+points = PackedVector2Array(-1.18021e-06, 27, 0, 1400)
+width = 2.0
+default_color = Color(1, 0.278431, 0.25098, 1)
+
 [node name="Projectiles" type="Node" parent="."]
 
 [node name="BulletCooldown" type="Timer" parent="."]
 one_shot = true
+
+[connection signal="timeout" from="BulletCooldown" to="." method="_on_bullet_cooldown_timeout"]
