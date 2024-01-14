@@ -18,6 +18,7 @@ config/icon="res://Robots/icon.svg"
 [display]
 
 window/size/viewport_height=800
+window/size/resizable=false
 
 [input]
 

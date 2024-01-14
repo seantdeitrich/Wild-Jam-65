@@ -2,6 +2,9 @@ extends Area2D
 var direction:=Vector2.ZERO;
 const SPEED = 400;
 
+func _ready():
+	look_at(global_position + direction)
+
 func _process(delta: float) -> void:
 	position += direction * SPEED * delta;
 	
