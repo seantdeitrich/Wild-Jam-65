@@ -1,13 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqnhaese8be18"]
+[gd_scene load_steps=6 format=3 uid="uid://cqnhaese8be18"]
 
 [ext_resource type="Script" path="res://Brobot.gd" id="1_htirh"]
 [ext_resource type="Texture2D" uid="uid://dg41pqr5hslca" path="res://Robots/robot_3Dgreen.png" id="1_t0kji"]
+[ext_resource type="PackedScene" uid="uid://c4th6ohm84wfk" path="res://bullet.tscn" id="2_mpwuf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c0lro"]
 radius = 28.0179
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_816rx"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Brobot" type="CharacterBody2D"]
 script = ExtResource("1_htirh")
+bullet = ExtResource("2_mpwuf")
 
 [node name="Robot3Dgreen" type="Sprite2D" parent="."]
 scale = Vector2(0.363176, 0.363176)
@@ -16,21 +26,10 @@ texture = ExtResource("1_t0kji")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_c0lro")
 
-[node name="Laser" type="Line2D" parent="."]
-rotation = -1.5708
-points = PackedVector2Array(-1.18021e-06, 27, 0, 1400)
-width = 2.0
-default_color = Color(1, 0.278431, 0.25098, 1)
-antialiased = true
-
 [node name="Projectiles" type="Node" parent="."]
 
 [node name="BulletCooldown" type="Timer" parent="."]
 one_shot = true
 
-[node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
-[connection signal="timeout" from="BulletCooldown" to="." method="_on_bullet_cooldown_timeout"]
-[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_816rx")

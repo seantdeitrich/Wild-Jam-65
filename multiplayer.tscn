@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpj0okyvnqs5b"]
+
+[ext_resource type="Script" path="res://Multiplayer.gd" id="1_dmrkk"]
+
+[node name="Multiplayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dmrkk")
+Address = null
+Port = null
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Host" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "host
+"
+
+[node name="Join" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "join"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Brobot.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="VBoxContainer/Join" to="." method="_on_join_pressed"]
