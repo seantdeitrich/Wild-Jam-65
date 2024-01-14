@@ -17,6 +17,7 @@ func _on_host_pressed() -> void:
 	#Create server on port var: Port with 2 players
 	peer.create_server(Port, 2)
 	multiplayer.set_multiplayer_peer(peer)
+	$VBoxContainer/Host.disabled=true
 
 	#Connect and call a function to add the player to the scene tree
 	multiplayer.peer_connected.connect(add_player)
@@ -37,6 +38,10 @@ func add_player(id):
 	var player = brobot.instantiate()
 	player.name = str(id)
 	call_deferred("add_child",player)
+
+func _on_text_edit_text_changed():
+	Address = $TextEdit.get_line(0)
+	print(Address)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
