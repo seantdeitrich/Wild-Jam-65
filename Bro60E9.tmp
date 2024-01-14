@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqnhaese8be18"]
+[gd_scene load_steps=5 format=3 uid="uid://cqnhaese8be18"]
 
 [ext_resource type="Script" path="res://Brobot.gd" id="1_htirh"]
 [ext_resource type="Texture2D" uid="uid://dg41pqr5hslca" path="res://Robots/robot_3Dgreen.png" id="1_t0kji"]
+[ext_resource type="PackedScene" uid="uid://dbd376csly83s" path="res://smoke_dash.tscn" id="3_smjn1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c0lro"]
 radius = 28.0179
@@ -21,16 +22,13 @@ rotation = -1.5708
 points = PackedVector2Array(-1.18021e-06, 27, 0, 1400)
 width = 2.0
 default_color = Color(1, 0.278431, 0.25098, 1)
-antialiased = true
 
 [node name="Projectiles" type="Node" parent="."]
 
 [node name="BulletCooldown" type="Timer" parent="."]
 one_shot = true
 
-[node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
+[node name="SmokeDash" parent="." instance=ExtResource("3_smjn1")]
+position = Vector2(-30, 2)
 
 [connection signal="timeout" from="BulletCooldown" to="." method="_on_bullet_cooldown_timeout"]
-[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

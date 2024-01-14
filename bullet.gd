@@ -1,6 +1,6 @@
 extends Area2D
 var direction:=Vector2.ZERO;
-const SPEED = 1000;
+const SPEED = 1750;
 
 func _ready():
 	look_at(global_position + direction)

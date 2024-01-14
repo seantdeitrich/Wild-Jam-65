@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbd376csly83s"]
+
+[ext_resource type="Texture2D" uid="uid://8ac8mj45arar" path="res://Smoke/smokeGrey0.png" id="2_sigjp"]
+
+[sub_resource type="Curve" id="Curve_qcdbt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.983146, 0.406593), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_cbh5w"]
+colors = PackedColorArray(0.933594, 0.933594, 0.933594, 1, 1, 1, 1, 0.2)
+
+[sub_resource type="Curve" id="Curve_tc8hq"]
+max_value = 200.0
+_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(1, 87.9121), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="GDScript" id="GDScript_vc745"]
+script/source = "extends CPUParticles2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	randomize()
+
+"
+
+[node name="SmokeDash" type="CPUParticles2D"]
+position = Vector2(0, -1)
+lifetime = 0.8
+texture = ExtResource("2_sigjp")
+direction = Vector2(-1, 0)
+gravity = Vector2(-500, 0)
+initial_velocity_max = 50.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_qcdbt")
+color_ramp = SubResource("Gradient_cbh5w")
+anim_speed_curve = SubResource("Curve_tc8hq")
+script = SubResource("GDScript_vc745")
